@@ -18,6 +18,12 @@
         android:theme="@style/Theme.Merhav_mugan"
         tools:targetApi="31">
         <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".DB_View"
             android:exported="true" />
         <activity
@@ -25,15 +31,7 @@
             android:exported="true" />
         <activity
             android:name=".Map"
-            android:exported="true">
-
-        </activity> <!-- Other activities -->
-        <activity
-            android:name=".registor_second_activity"
-            android:exported="false" />
-        <activity
-            android:name=".regloginmain"
-            android:exported="false" />
+            android:exported="true" /> <!-- Other activities -->
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
