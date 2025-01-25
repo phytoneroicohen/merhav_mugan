@@ -20,7 +20,7 @@ public class DB_View extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
 
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
-        List<Student> students=db.getAllStudents();
+        List<Student> students=db.getAllRecords();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new myAdapter(this,students));

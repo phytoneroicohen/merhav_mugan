@@ -61,7 +61,7 @@ public class DB_Main extends AppCompatActivity {
 
                 Student student=new Student(-1,et_name.getText().toString(),et_lentitude.getText().toString(),et_grades.getText().toString(),Integer.parseInt(et_age.getText().toString()));
                 SQLopenHelpler dbHelpler =new SQLopenHelpler(DB_Main.this);
-                long success=dbHelpler.addStudent(student);
+                long success=dbHelpler.addRecord(student);
                 Toast.makeText(DB_Main.this,"inserted to the database",Toast.LENGTH_SHORT).show();
             }
         });
@@ -70,7 +70,7 @@ public class DB_Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SQLopenHelpler db=new SQLopenHelpler(DB_Main.this);
-                db.deleteStudent(Integer.parseInt(et_deleteID.getText().toString()));
+                db.deleteRecord(Integer.parseInt(et_deleteID.getText().toString()));
             }
 
         });
@@ -79,7 +79,7 @@ public class DB_Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SQLopenHelpler db=new SQLopenHelpler(DB_Main.this);
-                db.updateStudentGrades(Integer.parseInt(etIDUpdt.getText().toString()),etGradesUpdt.getText().toString());
+                db.updateRecord(Integer.parseInt(etIDUpdt.getText().toString()),etGradesUpdt.getText().toString());
 
 
             }

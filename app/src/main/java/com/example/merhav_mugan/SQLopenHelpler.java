@@ -43,8 +43,8 @@ public class SQLopenHelpler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENT);
         onCreate(db);
     }
-    /// method that add student
-    public long addStudent (Student student ){
+
+    public long addRecord (Student student ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME , student.getName());
@@ -57,14 +57,14 @@ public class SQLopenHelpler extends SQLiteOpenHelper {
         return  id;
     }
 
-    public void deleteStudent(int id)
+    public void deleteRecord(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_STUDENT,COLUMN_ID+" =?",new String[]{String.valueOf(id)});
         db.close();
     }
 
-    public void updateStudentGrades(int id, String newGrades)
+    public void updateRecord(int id, String newGrades)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -74,17 +74,9 @@ public class SQLopenHelpler extends SQLiteOpenHelper {
 
     }
 
-    public void updateStudentGrades2(int id,ArrayList<Integer>newGrades)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_GRADES, convertGradesToString(newGrades));
-        db.update(TABLE_STUDENT,values,COLUMN_ID+" =?",new String[]{String.valueOf(id)});
-        db.close();
 
-    }
 
-    public ArrayList<Student> getAllStudents() {
+    public ArrayList<Student> getAllRecords() {
         ArrayList<Student> ls=new ArrayList<>();
         String queryStr = "SELECT * FROM " + TABLE_STUDENT;
         SQLiteDatabase db=this.getReadableDatabase();
@@ -108,35 +100,13 @@ public class SQLopenHelpler extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<String> dbShow2 () {
-        ArrayList<String> ls=new ArrayList<>();
-        String queryStr = "SELECT * FROM " + TABLE_STUDENT;
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(queryStr,null);
-        if (cursor.moveToFirst()) {
-            do{
-                int studentID = cursor.getInt(0);
-                String studentName=cursor.getString(1);
-                String studentAddrrss=cursor.getString(2);
-                int studentAge=cursor.getInt(3);
-                String studentgrades=cursor.getString(4);
 
-                Student student=new Student(studentID,studentName,studentAddrrss,studentgrades,studentAge);
-                ls.add(student.getGrades());
-            } while (cursor.moveToNext());
-        }
-        else{}
-        cursor.close();
-        db.close();
-        return ls;
-
-    }
 
 
 
     public Student getTopStudent()
     {
-        List<Student> students=getAllStudents();
+        List<Student> students=getAllRecords();
         double higher_avg=students.get(0).getAverageGrade();
         Student top= students.get(0);
 
@@ -149,48 +119,10 @@ public class SQLopenHelpler extends SQLiteOpenHelper {
         }
         return top;
     }
-    /*    @SuppressLint("Range")
-        public ArrayList<Student> getAllStudents2()
-        {
-            ArrayList<Student> students=new ArrayList<>();
-            String selectQuery="SELECT * FROM"+TABLE_STUDENT;
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor=db.rawQuery(selectQuery,null);
-            if(cursor.moveToFirst())
-            {
-                do {
-                  String name= cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
-                    String adress= cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS))
-                    int age= cursor.getInt(cursor.getColumnIndex(COLUMN_AGE))
-                            ArrayList<Integer>g=convertStringGrades(cursor.getColumnIndex(COLUMN_GRADES))
-                                    int id=cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-                                    Student student=new Student(name,adress,age,g);
-                                    students.add(student);
-                }while(cursor.moveToNext());
-            }
-            cursor.close();
-            db.close();
-            return students;
-        }
-    */
-    private String convertGradesToString(ArrayList<Integer>grades)
-    {
-        return TextUtils.join(",",grades);
-    }
 
-    private ArrayList<Integer> convertStringGrades(String gradesStr)
-    {
-        ArrayList<Integer> grades=new ArrayList<>();
-        if(!gradesStr.isEmpty())
-        {
-            String [] gradeArray=gradesStr.split(",");
-            for(String grade:gradeArray)
-            {
-                grades.add(Integer.parseInt(grade));
-            }
-        }
-        return grades;
-    }
+
+
+
 
 
 }
