@@ -20,10 +20,10 @@ public class DB_View extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
 
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
-        List<merhav_mugan> students=db.getAllRecords();
+        List<merhav_mugan> mugans=db.getAllRecords();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new myAdapter(this,students));
+        recyclerView.setAdapter(new myAdapter(this,mugans));
 
         tv.setText("List of records:");
 

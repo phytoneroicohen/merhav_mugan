@@ -2,6 +2,8 @@ package com.example.merhav_mugan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,9 +24,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap myMap;
-    private FusedLocationProviderClient fusedLocationProviderClient;
+        private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -54,7 +58,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         } else {
             requestLocationPermission();
         }
-        LatLng Ash1 = new LatLng(31.6767, 34.6012);
+        SQLopenHelpler  db=new SQLopenHelpler(this) ;
+        List<merhav_mugan> mugans=db.getAllRecords();
+
+        LatLng Ash1 = new LatLng(mugans.get(0).getlatitude(), mugans.get(0).getLongitude());
         googleMap.addMarker(new MarkerOptions()
                 .position(Ash1)
                 .title("Marker in Sydney"));
