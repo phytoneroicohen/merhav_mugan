@@ -1,25 +1,25 @@
 package com.example.merhav_mugan;
 
 public class merhav_mugan {
-    String adres;
-    double letitude , longitude ;
-boolean is_acictive;
-int quantity;
+    int id;
+    double latitude , longitude ;
+    boolean is_accessible;
+    int quantity;
 
-    public String getAdres() {
-        return adres;
+    public int getid() {
+        return id;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setid(int id) {
+        this.id = id;
     }
 
-    public double getLetitude() {
-        return letitude;
+    public double getlatitude() {
+        return latitude;
     }
 
-    public void setLetitude(double letitude) {
-        this.letitude = letitude;
+    public void setlatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public double getLongitude() {
@@ -30,12 +30,12 @@ int quantity;
         this.longitude = longitude;
     }
 
-    public boolean isIs_acictive() {
-        return is_acictive;
+    public boolean is_accessible() {
+        return is_accessible;
     }
 
-    public void setIs_acictive(boolean is_acictive) {
-        this.is_acictive = is_acictive;
+    public void setis_accessible(boolean is_accessible) {
+        this.is_accessible = is_accessible;
     }
 
     public int getQuantity() {
@@ -46,11 +46,11 @@ int quantity;
         this.quantity = quantity;
     }
 
-    public merhav_mugan(String adres, double letitude, double longitude, boolean is_acictive, int quantity) {
-        this.adres = adres;
-        this.letitude = letitude;
+    public merhav_mugan(double latitude, double longitude, boolean is_accessible, int quantity) {
+
+        this.latitude = latitude;
         this.longitude = longitude;
-        this.is_acictive = is_acictive;
+        this.is_accessible = is_accessible;
         this.quantity = quantity;
     }
 }

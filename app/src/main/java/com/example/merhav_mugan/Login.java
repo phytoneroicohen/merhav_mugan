@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
                 String UserEmail = email.getText().toString();
                 String UserPassword = pass.getText().toString();
 
+
                 if (!SavedEmail.equals(UserEmail) || !SavedPassword.equals(UserPassword)) {
                     Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG).show();
 
