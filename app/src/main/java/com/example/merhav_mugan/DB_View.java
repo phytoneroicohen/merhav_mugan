@@ -20,14 +20,12 @@ public class DB_View extends AppCompatActivity {
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
 
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
-        List<Student> students=db.getAllRecords();
+        List<merhav_mugan> students=db.getAllRecords();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new myAdapter(this,students));
 
-        Student topstudent=db.getTopStudent();
-        // Toast.makeText(MainActivity.this,"The student with the highest average is:"+topstudent.toString(),Toast.LENGTH_LONG);
-        tv.setText("The student with the highest average is: ID="+topstudent.getId()+"  Name="+topstudent.getName()+"  Average="+topstudent.getAverageGrade());
+        tv.setText("List of records:");
 
 
 

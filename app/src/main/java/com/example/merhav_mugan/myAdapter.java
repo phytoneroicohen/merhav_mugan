@@ -12,11 +12,11 @@ import java.util.List;
 public class myAdapter extends RecyclerView.Adapter<myHolder> {
 
     Context context;
-    List<Student> students;
+    List<merhav_mugan> mugans;
 
-    public myAdapter(Context context, List<Student> students) {
+    public myAdapter(Context context, List<merhav_mugan> mugans) {
         this.context = context;
-        this.students = students;
+        this.mugans = mugans;
     }
 
     @NonNull
@@ -27,15 +27,15 @@ public class myAdapter extends RecyclerView.Adapter<myHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull myHolder holder, int position) {
-        holder.idView.setText(String.valueOf(students.get(position).getId()));
-        holder.nameView.setText(String.valueOf((students.get(position).getName())));
-        holder.adsressView.setText(String.valueOf((students.get(position).getAddress())));
-        holder.ageView.setText(String.valueOf(students.get(position).getAge()));
-        holder.gradesView.setText(String.valueOf(students.get(position).getGrades()));
+        holder.idView.setText(String.valueOf(mugans.get(position).getid()));
+        holder.nameView.setText(String.valueOf((mugans.get(position).getlatitude())));
+        holder.adsressView.setText(String.valueOf((mugans.get(position).getLongitude())));
+        holder.ageView.setText(String.valueOf(mugans.get(position).is_accessible()));
+        holder.gradesView.setText(String.valueOf(mugans.get(position).getQuantity()));
     }
 
     @Override
     public int getItemCount() {
-        return students.size();
+        return mugans.size();
     }
 }
