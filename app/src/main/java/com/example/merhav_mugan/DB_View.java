@@ -21,7 +21,6 @@ public class DB_View extends AppCompatActivity {
 
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
         List<merhav_mugan> mugans=db.getAllRecords();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new myAdapter(this,mugans));
 

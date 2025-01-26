@@ -46,7 +46,13 @@ public class merhav_mugan {
         this.quantity = quantity;
     }
 
-    public merhav_mugan(int id,double latitude, double longitude, int is_accessible, int quantity) {
+    @Override
+    public String toString() {
+        return  "is_accessible=" + is_accessible +
+                ", quantity=" + quantity ;
+    }
+
+    public merhav_mugan(int id, double latitude, double longitude, int is_accessible, int quantity) {
 
         this.id=id;
         this.latitude = latitude;

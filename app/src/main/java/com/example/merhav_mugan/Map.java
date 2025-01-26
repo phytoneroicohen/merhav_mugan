@@ -60,8 +60,13 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         }
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
         List<merhav_mugan> mugans=db.getAllRecords();
-
-        LatLng Ash1 = new LatLng(mugans.get(0).getlatitude(), mugans.get(0).getLongitude());
+        for (int i=0; i<mugans.size();i++){
+            LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
+            googleMap.addMarker(new MarkerOptions()
+                    .position(coordinate)
+                    .title(mugans.get(i).toString()));
+        }
+        LatLng Ash1 = new LatLng(31.6767, 34.6012);
         googleMap.addMarker(new MarkerOptions()
                 .position(Ash1)
                 .title("Marker in Sydney"));
