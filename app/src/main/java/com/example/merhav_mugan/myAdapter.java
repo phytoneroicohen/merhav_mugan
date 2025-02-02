@@ -28,10 +28,10 @@ public class myAdapter extends RecyclerView.Adapter<myHolder> {
     @Override
     public void onBindViewHolder(@NonNull myHolder holder, int position) {
         holder.idView.setText(String.valueOf(mugans.get(position).getid()));
-        holder.nameView.setText(String.valueOf((mugans.get(position).getlatitude())));
-        holder.adsressView.setText(String.valueOf((mugans.get(position).getLongitude())));
-        holder.ageView.setText(String.valueOf(mugans.get(position).is_accessible()));
-        holder.gradesView.setText(String.valueOf(mugans.get(position).getQuantity()));
+        holder.latitudeView.setText(String.valueOf((mugans.get(position).getlatitude())));
+        holder.longitudeView.setText(String.valueOf((mugans.get(position).getLongitude())));
+        holder.accessibleView.setText(String.valueOf(mugans.get(position).is_accessible()));
+        holder.quantityView.setText(String.valueOf(mugans.get(position).getQuantity()));
     }
 
     @Override

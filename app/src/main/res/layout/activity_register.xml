@@ -19,6 +19,20 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/needacceability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="needacceability"
+
+        />
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="address"/>
+
+
+    <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

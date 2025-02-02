@@ -28,8 +28,29 @@ import java.util.List;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap myMap;
-        private FusedLocationProviderClient fusedLocationProviderClient;
+    private double myLatitude,myLongitude;
+    private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    public double getMyLatitude() {
+        return myLatitude;
+    }
+
+    public double calculateDistance(double muganLatitude,double muganLongitute){
+        double earthRadius = 6371; // קוטר כדור הארץ בקילומטרים
+        double dLat = Math.toRadians(muganLatitude - myLatitude);
+        double dLon = Math.toRadians(muganLongitute -myLongitude );
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(Math.toRadians(myLatitude)) * Math.cos(Math.toRadians(muganLatitude)) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return earthRadius * c;
+
+    }
+
+    public double getMyLongitude() {
+        return myLongitude;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +76,29 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             myMap.setMyLocationEnabled(true);
             getLastLocation();
+
         } else {
             requestLocationPermission();
         }
+
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
         List<merhav_mugan> mugans=db.getAllRecords();
+
+
+
         for (int i=0; i<mugans.size();i++){
             LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(coordinate)
                     .title(mugans.get(i).toString()));
+
+
         }
-        LatLng Ash1 = new LatLng(31.6767, 34.6012);
-        googleMap.addMarker(new MarkerOptions()
-                .position(Ash1)
-                .title("Marker in Sydney"));
-        LatLng Ash2 = new LatLng(31.6767, 34.5762);
-        googleMap.addMarker(new MarkerOptions()
-                .position(Ash2)
-                .title("Marker in Ashkelon"));
+
+  //      LatLng Ash2 = new LatLng(31.6767, 34.5762);
+  //      googleMap.addMarker(new MarkerOptions()
+  //              .position(Ash2)
+  //              .title("Marker in Ashkelon"));
     }
 
     private void requestLocationPermission() {
@@ -92,6 +117,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         task.addOnSuccessListener(location -> {
             if (location != null) {
                 LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                myLatitude=currentLatLng.latitude;
+                myLongitude=currentLatLng.longitude;
                 myMap.addMarker(new MarkerOptions().position(currentLatLng).title("You are here"));
                 myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
             } else {
@@ -112,5 +139,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 // Permissions denied, show a message to the user
             }
         }
+
+
+
+
     }
 }

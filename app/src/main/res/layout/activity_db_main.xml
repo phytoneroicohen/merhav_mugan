@@ -10,15 +10,6 @@
 
 
     <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Name"
-        />
-
-    <EditText
         android:id="@+id/etlatitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,7 +75,7 @@
         android:id="@+id/etGradesUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Student new Grades"
+        android:hint="Safeplace quantity Update"
         android:inputType="text"
         />
 
@@ -92,7 +83,7 @@
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update student Grades" />
+        android:text="Update SafePlace" />
 
 
     <Button

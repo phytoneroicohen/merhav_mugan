@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class myHolder extends RecyclerView.ViewHolder {
 
-    TextView idView,nameView,adsressView,ageView,gradesView;
+    TextView idView,latitudeView,longitudeView,accessibleView,quantityView;
     public myHolder(@NonNull View itemView){
         super(itemView);
-        idView=itemView.findViewById(R.id.ID);
-        nameView=itemView.findViewById(R.id.name);
-        adsressView=itemView.findViewById(R.id.address);
-        ageView=itemView.findViewById(R.id.age);
-        gradesView=itemView.findViewById(R.id.grades);
+        idView=itemView.findViewById(R.id.itemID);
+        latitudeView=itemView.findViewById(R.id.itemLatitude);
+        longitudeView=itemView.findViewById(R.id.itemLongtitude);
+        accessibleView=itemView.findViewById(R.id.itemAccessible);
+        quantityView=itemView.findViewById(R.id.itemQuantity);
 
 
     }

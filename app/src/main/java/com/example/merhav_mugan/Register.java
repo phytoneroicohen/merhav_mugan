@@ -14,7 +14,7 @@
 
     public class Register extends AppCompatActivity {
 
-        private EditText UserName, Password, Email;
+        private EditText UserName, Password, Email,needaceability,adrres;
         private Button btn;
 
         @Override
@@ -22,9 +22,12 @@
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
 
+
             UserName = (EditText) findViewById(R.id.username);
             Password = (EditText) findViewById(R.id.password);
             Email = (EditText) findViewById(R.id.email);
+            needaceability=findViewById(R.id.needacceability);
+            adrres=findViewById(R.id.address);
 
             btn = (Button) findViewById(R.id.register_button);
 
@@ -53,8 +56,18 @@
 
                     editor.apply();
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    User user=new User(-1,userName,Pass,email,adrres.getText().toString(),Integer.parseInt(needaceability.getText().toString()));
+                    SQLopenHelpler sqLopenHelpler=new SQLopenHelpler(Register.this);
+                    long aditiontodb=sqLopenHelpler.addUser(user);
+                    Toast.makeText(Register.this,"inserted to the database",Toast.LENGTH_SHORT).show();
+
+
+
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
                     startActivity(intent);
+
+
+
 
 
                 }
