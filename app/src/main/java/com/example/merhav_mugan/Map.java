@@ -83,9 +83,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         SQLopenHelpler  db=new SQLopenHelpler(this) ;
         List<merhav_mugan> mugans=db.getAllRecords();
-
-
-
         for (int i=0; i<mugans.size();i++){
             LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
             googleMap.addMarker(new MarkerOptions()
