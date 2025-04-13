@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+
 public class Login extends AppCompatActivity {
 
     private EditText pass, email;
@@ -67,8 +68,10 @@ public class Login extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Login successfully - Welcome", Toast.LENGTH_LONG).show();
-                    editor.putBoolean("LogedIn", true);
-                    editor.apply();
+                    if (checkBox.isChecked()) {
+                        editor.putBoolean("LogedIn", true);
+                        editor.apply();
+                    }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
