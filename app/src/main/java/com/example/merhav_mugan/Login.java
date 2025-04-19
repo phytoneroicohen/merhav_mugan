@@ -36,8 +36,6 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
-
-
         move_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

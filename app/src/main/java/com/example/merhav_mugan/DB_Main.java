@@ -1,6 +1,7 @@
 package com.example.merhav_mugan;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -75,6 +78,38 @@ public class DB_Main extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_home) {
+            Intent intent=new Intent(this,MainActivity.class);
+            Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_DB) {
+            Toast.makeText(this, "DB clicked", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,DB_Main.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_MAP) {
+            Toast.makeText(this, "MAP clicked", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,Map.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_Login) {
+            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,Login.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

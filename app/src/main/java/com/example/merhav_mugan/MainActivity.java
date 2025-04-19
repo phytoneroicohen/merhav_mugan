@@ -64,14 +64,19 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
             startActivity(intent);
             return true;
-        } else if (id == R.id.menu_settings) {
+        } else if (id == R.id.menu_DB) {
             Toast.makeText(this, "DB clicked", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,DB_Main.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.menu_about) {
+        } else if (id == R.id.menu_MAP) {
             Toast.makeText(this, "MAP clicked", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,Map.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_Login) {
+            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,Login.class);
             startActivity(intent);
             return true;
         }
