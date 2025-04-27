@@ -18,6 +18,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +32,13 @@ public class DB_Main extends AppCompatActivity {
 
     Button btn_add, btn_del, btn_updt,buttonshowall;
     EditText  et_latitude,et_longitude,et_accessible,et_Quantity, et_deleteID,etIDUpdt,etGradesUpdt;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_main);
-
+        db = FirebaseDatabase.getInstance().getReference();
         et_latitude=findViewById(R.id.etlatitude);
         et_longitude=findViewById(R.id.etlongitude);
         et_accessible=findViewById(R.id.etaccessible);
@@ -49,8 +56,10 @@ public class DB_Main extends AppCompatActivity {
             public void onClick(View v) {
 
                 merhav_mugan mugan=new merhav_mugan (-1,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),Integer.parseInt(et_accessible.getText().toString()),Integer.parseInt(et_Quantity.getText().toString()));
-                SQLopenHelpler dbHelpler =new SQLopenHelpler(DB_Main.this);
-                long success=dbHelpler.addRecord(mugan);
+                db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
+
+                // SQLopenHelpler dbHelpler =new SQLopenHelpler(DB_Main.this);
+               // long success=dbHelpler.addRecord(mugan);
                 Toast.makeText(DB_Main.this,"inserted to the database",Toast.LENGTH_SHORT).show();
             }
         });

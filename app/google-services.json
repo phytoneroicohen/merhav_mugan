@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "27882169115",
+    "firebase_url": "https://test-4f16d-default-rtdb.firebaseio.com",
+    "project_id": "test-4f16d",
+    "storage_bucket": "test-4f16d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27882169115:android:f73e4ff2c5f4c42d39a9be",
+        "android_client_info": {
+          "package_name": "com.example.merhav_mugan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxW7fFB9ttg4PKCV0GzQn7dURPw75aKz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27882169115:android:a93769f9cafc2d7e39a9be",
+        "android_client_info": {
+          "package_name": "com.example.sheltersapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxW7fFB9ttg4PKCV0GzQn7dURPw75aKz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
