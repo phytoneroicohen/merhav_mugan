@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -32,6 +33,7 @@ import java.util.List;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap myMap;
+    private List<merhav_mugan> Shelters;
     private double myLatitude,myLongitude;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -85,21 +87,28 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             requestLocationPermission();
         }
 
-        SQLopenHelpler  db=new SQLopenHelpler(this) ;
-        List<merhav_mugan> mugans=db.getAllRecords();
-        for (int i=0; i<mugans.size();i++){
-            LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
-            googleMap.addMarker(new MarkerOptions()
-                    .position(coordinate)
-                    .title(mugans.get(i).toString()));
+        firebaseHandler handler = new firebaseHandler();
+        handler.getAllShelters(new firebaseHandler.ShelterListCallback() {
 
+            @Override
+            public void onResult(List<merhav_mugan> mugans) {
+                // This runs only when data is loaded!
+                Shelters=mugans;
+                for (int i=0; i<mugans.size();i++){
+                    LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(coordinate)
+                            .title(mugans.get(i).toString()));
+                }
 
-        }
+            }
 
-  //      LatLng Ash2 = new LatLng(31.6767, 34.5762);
-  //      googleMap.addMarker(new MarkerOptions()
-  //              .position(Ash2)
-  //              .title("Marker in Ashkelon"));
+            @Override
+            public void onError(String error) {
+                Toast.makeText(Map.this, "Failed: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void requestLocationPermission() {
