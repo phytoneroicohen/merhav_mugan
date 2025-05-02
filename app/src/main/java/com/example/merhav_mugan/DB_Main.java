@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +37,7 @@ public class DB_Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_main);
         db = FirebaseDatabase.getInstance().getReference();
@@ -50,12 +52,15 @@ public class DB_Main extends AppCompatActivity {
         btn_del=findViewById(R.id.btnDeleteID);
         btn_updt=findViewById(R.id.btnUpdate);
         buttonshowall=findViewById(R.id.buttonshowingall);
+        RecyclerView recyclerView=findViewById(R.id.recyclerView);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                long id = System.currentTimeMillis();
 
-                merhav_mugan mugan=new merhav_mugan (-1,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),Integer.parseInt(et_accessible.getText().toString()),Integer.parseInt(et_Quantity.getText().toString()));
+
+                merhav_mugan mugan=new merhav_mugan (id,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),Integer.parseInt(et_accessible.getText().toString()),Integer.parseInt(et_Quantity.getText().toString()));
                 db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
 
                 // SQLopenHelpler dbHelpler =new SQLopenHelpler(DB_Main.this);
@@ -83,11 +88,53 @@ public class DB_Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Intent intent=new Intent(DB_Main.this, DB_View.class);
                 startActivity(intent);
+
             }
         });
     }
+
+    public ArrayList<merhav_mugan> get_records(){
+        ArrayList<merhav_mugan> ls=new ArrayList<>();
+
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("shelters");
+
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                StringBuilder sb = new StringBuilder();
+
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    merhav_mugan shelter = snap.getValue(merhav_mugan.class);
+                    if (shelter != null) {
+                        ls.add(shelter);
+                        sb.append("ID: ").append(shelter.id)
+                                .append(", Lat: ").append(shelter.latitude)
+                                .append(", Lng: ").append(shelter.longitude)
+                                .append(", Cap: ").append(shelter.quantity)
+                                .append(", Acc: ").append(shelter.is_accessible)
+                                .append("\n");
+
+                    }
+                }
+
+                Toast.makeText(DB_Main.this, sb.toString(), Toast.LENGTH_LONG).show();}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Toast.makeText(DB_Main.this, "Error loading data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        return ls ;
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

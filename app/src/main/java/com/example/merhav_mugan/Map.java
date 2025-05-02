@@ -141,7 +141,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             }
         }
     }
-
+    // Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);

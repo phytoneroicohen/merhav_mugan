@@ -1,16 +1,16 @@
 package com.example.merhav_mugan;
 
 public class merhav_mugan {
-    int id;
+    long id;
     double latitude , longitude ;
     int is_accessible;
     int quantity;
 
-    public int getid() {
+    public long getid() {
         return id;
     }
 
-    public void setid(int id) {
+    public void setid(long id) {
         this.id = id;
     }
 
@@ -52,12 +52,15 @@ public class merhav_mugan {
                 ", quantity=" + quantity ;
     }
 
-    public merhav_mugan(int id, double latitude, double longitude, int is_accessible, int quantity) {
+    public merhav_mugan(long id, double latitude, double longitude, int is_accessible, int quantity) {
 
         this.id=id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.is_accessible = is_accessible;
         this.quantity = quantity;
+    }
+
+    public merhav_mugan() {
     }
 }
