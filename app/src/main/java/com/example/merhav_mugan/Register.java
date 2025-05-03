@@ -57,8 +57,8 @@
                     editor.apply();
 
                     User user=new User(-1,userName,Pass,email,adrres.getText().toString(),Integer.parseInt(needaceability.getText().toString()));
-                    SQLopenHelpler sqLopenHelpler=new SQLopenHelpler(Register.this);
-                    long aditiontodb=sqLopenHelpler.addUser(user);
+       //             SQLopenHelpler sqLopenHelpler=new SQLopenHelpler(Register.this);
+       //             long aditiontodb=sqLopenHelpler.addUser(user);
                     Toast.makeText(Register.this,"inserted to the database",Toast.LENGTH_SHORT).show();
 
 

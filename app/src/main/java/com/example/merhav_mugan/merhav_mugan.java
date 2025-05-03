@@ -3,7 +3,7 @@ package com.example.merhav_mugan;
 public class merhav_mugan {
     long id;
     double latitude , longitude ;
-    int is_accessible;
+    boolean accessible;
     int quantity;
 
     public long getid() {
@@ -30,12 +30,12 @@ public class merhav_mugan {
         this.longitude = longitude;
     }
 
-    public int is_accessible() {
-        return is_accessible;
+    public boolean isAccessible() {
+        return accessible;
     }
 
-    public void setis_accessible(int is_accessible) {
-        this.is_accessible = is_accessible;
+    public void setAccessible(boolean accessible) {
+        this.accessible = accessible;
     }
 
     public int getQuantity() {
@@ -48,16 +48,16 @@ public class merhav_mugan {
 
     @Override
     public String toString() {
-        return  "is_accessible=" + is_accessible +
+        return  "accessible=" + accessible +
                 ", quantity=" + quantity ;
     }
 
-    public merhav_mugan(long id, double latitude, double longitude, int is_accessible, int quantity) {
+    public merhav_mugan(long id, double latitude, double longitude, boolean accessible, int quantity) {
 
         this.id=id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.is_accessible = is_accessible;
+        this.accessible = accessible;
         this.quantity = quantity;
     }
 

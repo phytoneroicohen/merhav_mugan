@@ -30,7 +30,7 @@ public class myAdapter extends RecyclerView.Adapter<myHolder> {
         holder.idView.setText(String.valueOf(mugans.get(position).getid()));
         holder.latitudeView.setText(String.valueOf((mugans.get(position).getlatitude())));
         holder.longitudeView.setText(String.valueOf((mugans.get(position).getLongitude())));
-        holder.accessibleView.setText(String.valueOf(mugans.get(position).is_accessible()));
+        holder.accessibleView.setText(String.valueOf(mugans.get(position).isAccessible()));
         holder.quantityView.setText(String.valueOf(mugans.get(position).getQuantity()));
     }
 

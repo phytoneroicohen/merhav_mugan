@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
@@ -32,8 +33,9 @@ import java.util.List;
 public class DB_Main extends AppCompatActivity {
 
     Button btn_add, btn_del, btn_updt,buttonshowall;
-    EditText  et_latitude,et_longitude,et_accessible,et_Quantity, et_deleteID,etIDUpdt,etGradesUpdt;
+    EditText  et_latitude,et_longitude,et_Quantity, et_deleteID,etIDUpdt,etGradesUpdt;
     DatabaseReference db;
+    Switch s1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,6 @@ public class DB_Main extends AppCompatActivity {
         db = FirebaseDatabase.getInstance().getReference();
         et_latitude=findViewById(R.id.etlatitude);
         et_longitude=findViewById(R.id.etlongitude);
-        et_accessible=findViewById(R.id.etaccessible);
         et_Quantity=findViewById(R.id.etQuantity);
         et_deleteID=findViewById(R.id.edDeleteID);
         etIDUpdt=findViewById(R.id.edStdntUpdate);
@@ -52,7 +53,7 @@ public class DB_Main extends AppCompatActivity {
         btn_del=findViewById(R.id.btnDeleteID);
         btn_updt=findViewById(R.id.btnUpdate);
         buttonshowall=findViewById(R.id.buttonshowingall);
-        RecyclerView recyclerView=findViewById(R.id.recyclerView);
+        s1=findViewById(R.id.switch1);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,35 +61,26 @@ public class DB_Main extends AppCompatActivity {
                 long id = System.currentTimeMillis();
 
 
-                merhav_mugan mugan=new merhav_mugan (id,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),Integer.parseInt(et_accessible.getText().toString()),Integer.parseInt(et_Quantity.getText().toString()));
+                merhav_mugan mugan=new merhav_mugan (id,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),s1.isChecked(),Integer.parseInt(et_Quantity.getText().toString()));
                 db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
-
-                // SQLopenHelpler dbHelpler =new SQLopenHelpler(DB_Main.this);
-               // long success=dbHelpler.addRecord(mugan);
                 Toast.makeText(DB_Main.this,"inserted to the database",Toast.LENGTH_SHORT).show();
             }
         });
         btn_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLopenHelpler db=new SQLopenHelpler(DB_Main.this);
-                db.deleteRecord(Integer.parseInt(et_deleteID.getText().toString()));
-                Toast.makeText(DB_Main.this,"deleted from the database",Toast.LENGTH_SHORT).show();
+      //          Toast.makeText(DB_Main.this,"deleted from the database",Toast.LENGTH_SHORT).show();
 
             }
         });
         btn_updt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLopenHelpler db=new SQLopenHelpler(DB_Main.this);
-                db.updateRecord(Integer.parseInt(etIDUpdt.getText().toString()),etGradesUpdt.getText().toString());
-            }
+           }
         });
         buttonshowall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent intent=new Intent(DB_Main.this, DB_View.class);
                 startActivity(intent);
 
@@ -96,46 +88,7 @@ public class DB_Main extends AppCompatActivity {
         });
     }
 
-    public ArrayList<merhav_mugan> get_records(){
-        ArrayList<merhav_mugan> ls=new ArrayList<>();
-
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("shelters");
-
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                StringBuilder sb = new StringBuilder();
-
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    merhav_mugan shelter = snap.getValue(merhav_mugan.class);
-                    if (shelter != null) {
-                        ls.add(shelter);
-                        sb.append("ID: ").append(shelter.id)
-                                .append(", Lat: ").append(shelter.latitude)
-                                .append(", Lng: ").append(shelter.longitude)
-                                .append(", Cap: ").append(shelter.quantity)
-                                .append(", Acc: ").append(shelter.is_accessible)
-                                .append("\n");
-
-                    }
-                }
-
-                Toast.makeText(DB_Main.this, sb.toString(), Toast.LENGTH_LONG).show();}
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                Toast.makeText(DB_Main.this, "Error loading data", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-        return ls ;
-    }
-
-
-
+//Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);

@@ -11,8 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-
 public class Login extends AppCompatActivity {
 
     private EditText pass, email;
