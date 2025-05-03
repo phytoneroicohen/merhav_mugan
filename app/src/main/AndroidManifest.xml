@@ -15,7 +15,7 @@
         android:label="Safe Place"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:theme="@style/Theme.Merhav_mugan"
         tools:targetApi="31">
         <activity
             android:name=".Register"
@@ -37,8 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".DB_Main"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:exported="true"/>
         <activity
             android:name=".Map"
             android:exported="true" /> <!-- Other activities -->
@@ -49,8 +48,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            android:exported="false">
 
 
         </activity>

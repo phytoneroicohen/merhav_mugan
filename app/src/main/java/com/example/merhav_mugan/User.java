@@ -1,27 +1,18 @@
 package com.example.merhav_mugan;
 
 public class User {
-    private int id;
-    private String UN;
-    private String address;
-    private String password;
-    private String email;
-    private int needAccessibility;
+    String UN;
+    String address;
+    String password;
+    String email;
+    boolean needAccessibility;
 
-    public int getNeedAccessibility() {
+    public boolean IsNeedAccessibility() {
         return needAccessibility;
     }
 
-    public void setNeedAccessibility(int needAccessibility) {
+    public void setNeedAccessibility(boolean needAccessibility) {
         this.needAccessibility = needAccessibility;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUN() {
@@ -60,15 +51,14 @@ public class User {
         return address;
     }
 
-    public User(int id, String UN, String password, String email, String address, int needacesability){
+    public User(String UN, String password, String email, String address, boolean needacesability){
 
-        }
-    {
-        this.id = id;
+
         this.UN = UN;
         this.password = password;
         this.email = email;
         this.address=address;
         this.needAccessibility=needAccessibility;
     }
+
 }

@@ -28,11 +28,11 @@ public class Login extends AppCompatActivity {
         checkBox=findViewById(R.id.checkBox);
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         boolean loggedIn=sharedPreferences.getBoolean("LogedIn",false);
-        if (loggedIn){
-            Intent intent=new Intent(this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        if (loggedIn){
+//            Intent intent=new Intent(this,MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         move_button.setOnClickListener(new View.OnClickListener() {
             @Override

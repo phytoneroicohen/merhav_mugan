@@ -18,18 +18,12 @@
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/needacceability"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="needacceability"
 
-        />
     <EditText
         android:id="@+id/address"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="address"/>
+        android:hint="Address"/>
 
 
     <EditText
@@ -38,6 +32,13 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Need Accessability" />
 
     <Button
         android:id="@+id/register_button"
