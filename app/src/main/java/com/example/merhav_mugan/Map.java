@@ -162,22 +162,18 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         int id = item.getItemId();
         if (id == R.id.menu_home) {
             Intent intent=new Intent(this,MainActivity.class);
-            Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show();
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_DB) {
-            Toast.makeText(this, "DB clicked", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,DB_Main.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_MAP) {
-            Toast.makeText(this, "MAP clicked", Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(this,Map.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_Login) {
-            Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show();
-            Intent intent=new Intent(this,Login.class);
+            Intent intent=new Intent(this,Register.class);
             startActivity(intent);
             return true;
         }

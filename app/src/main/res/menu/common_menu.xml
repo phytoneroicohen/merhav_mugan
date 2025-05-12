@@ -3,22 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_home"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/baseline_home_24"
         android:title="Home"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_DB"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/baseline_add_circle_24"
         android:title="DB"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_MAP"
-        android:icon="@android:drawable/ic_menu_mylocation"
+        android:icon="@drawable/baseline_location_on_24"
         android:title="MAP"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_Login"
-        android:icon="@android:drawable/checkbox_on_background"
+        android:icon="@drawable/baseline_how_to_reg_24"
         android:title="Login"
         app:showAsAction="always" />
 </menu>

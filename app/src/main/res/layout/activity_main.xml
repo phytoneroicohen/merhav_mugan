@@ -1,35 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Map"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="200dp" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DB-SafePlace"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="200dp" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="200dp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/infoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="6dp"
+            android:text="ברוכים הבאים לאפליקציית 'מרחב מוגן'!\n\nבאמצעות האפליקציה תוכלו:\n• לאתר מקלטים ומרחבים מוגנים על גבי מפה\n• לראות מידע על כל מקלט – כמו קיבולת ונגישות\n• להוסיף או לעדכן מקלטים (למשתמשים מורשים)\n\nלהתחלת שימוש, בחרו את הפעולה הרצויה מהתפריט למעלה." />
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  עמוד הבית"
+            android:drawableRight="@drawable/baseline_home_24"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/text_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  הוספת מרחב מוגן (למשתמשים מורשים)"
+            android:drawableRight="@drawable/baseline_add_circle_24"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/text_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  מפת מרחבים מוגנים בסביבתך"
+            android:drawableRight="@drawable/baseline_location_on_24"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/text_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  שינוי פרטי משתמש/רישום מחדש"
+            android:drawableRight="@drawable/baseline_how_to_reg_24"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/moreInfoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:paddingTop="20dp"
+            android:text="לשאלות או תמיכה ניתן לפנות למייל התמיכה שלנו: support@example.com" />
 
 
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
