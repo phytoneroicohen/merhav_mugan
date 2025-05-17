@@ -26,6 +26,7 @@ public class Login extends AppCompatActivity {
         btn = findViewById(R.id.login_button);
         move_button = findViewById(R.id.move_button);
         checkBox=findViewById(R.id.checkBox);
+
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         boolean loggedIn=sharedPreferences.getBoolean("LogedIn",false);
         if (loggedIn)

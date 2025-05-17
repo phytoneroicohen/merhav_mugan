@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import org.checkerframework.common.value.qual.StringVal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +46,8 @@ public class DB_Main extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_main);
+
+
         db = FirebaseDatabase.getInstance().getReference();
         et_latitude=findViewById(R.id.etlatitude);
         et_longitude=findViewById(R.id.etlongitude);
@@ -54,6 +60,42 @@ public class DB_Main extends AppCompatActivity {
         btn_updt=findViewById(R.id.btnUpdate);
         buttonshowall=findViewById(R.id.buttonshowingall);
         s1=findViewById(R.id.switch1);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        long userId = sharedPreferences.getLong("id", -1);
+        if (userId != -1) {
+            DatabaseReference userRef = db.child("users").child(String.valueOf(userId));
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        boolean  permited= dataSnapshot.child("permission").getValue(boolean.class);
+                        if (permited){
+                            btn_add.setEnabled(true);
+                         // Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                         // startActivity(intent);
+                            Toast.makeText(DB_Main.this, "Access limited — view only mode", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    } else {
+                        Toast.makeText(DB_Main.this, "not", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("Firebase", "Error", databaseError.toException());
+                }
+            });
+        } else {
+            Log.d("SharedPreferences", "userId not found in SharedPreferences");
+        }
+
+
+
+
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override

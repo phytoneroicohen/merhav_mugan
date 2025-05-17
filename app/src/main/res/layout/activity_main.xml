@@ -60,7 +60,7 @@
             android:textSize="16sp"
             android:textColor="#444444"
             android:paddingTop="20dp"
-            android:text="לשאלות או תמיכה ניתן לפנות למייל התמיכה שלנו: support@example.com" />
+            android:text="לשאלות או תמיכה ניתן לפנות למייל התמיכה שלנו: safeplace@gmail.com" />
 
 
     </LinearLayout>

@@ -45,7 +45,9 @@
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Record" />
+        android:text="Add Record"
+        android:enabled="false"
+        />
 
     <EditText
         android:id="@+id/edDeleteID"

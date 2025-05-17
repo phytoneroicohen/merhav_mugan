@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent=new Intent(this,MainActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.menu_DB) {
+        }
+
+        else if (id == R.id.menu_DB) {
             Intent intent=new Intent(this,DB_Main.class);
             startActivity(intent);
             return true;
