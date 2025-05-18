@@ -40,7 +40,7 @@ public class DB_Main extends AppCompatActivity {
         btn_add=findViewById(R.id.btnAdd);
         buttonshowall=findViewById(R.id.buttonshowingall);
         s1=findViewById(R.id.switch1);
-
+        // Check if the user is permitted, and if so, enable the 'add button'
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         long userId = sharedPreferences.getLong("id", -1);
         if (userId != -1) {
@@ -77,14 +77,14 @@ public class DB_Main extends AppCompatActivity {
             public void onClick(View v) {
                 boolean valid=true;
                 String longitude=et_longitude.getText().toString();
-                if (Double.parseDouble(longitude)>180||Double.parseDouble(longitude)<-180||longitude.isEmpty()) {
+                if (Double.parseDouble(longitude)>35.9||Double.parseDouble(longitude)<34.2||longitude.isEmpty()) {
                     valid = false;
-                    Toast.makeText(getApplicationContext(), "Longitude must be between -180 and 180", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), " קוי האורך חיבים להיות בין34.2 ל35.9 שהם לפי אורך גבולות ישראל", Toast.LENGTH_LONG).show();
                 }
                 String latitude=et_latitude.getText().toString();
-                if (Double.parseDouble(latitude)>180||Double.parseDouble(latitude)<-180||latitude.isEmpty()) {
+                if (Double.parseDouble(latitude)<29.5||Double.parseDouble(latitude)>33.3||latitude.isEmpty()) {
                     valid = false;
-                    Toast.makeText(getApplicationContext(), "Latitude must be between -90 and 90", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "קוי הרוחב חיבים להיות בין 29.5 ל33.3 שהם לפי רוחב גבולות ישראל", Toast.LENGTH_LONG).show();
                 }
                 String quantity=et_Quantity.getText().toString();
                 if (quantity.isEmpty()) {
@@ -93,7 +93,8 @@ public class DB_Main extends AppCompatActivity {
                 }
                 if (valid) {
                     long id = System.currentTimeMillis();
-                    merhav_mugan mugan = new merhav_mugan(id, Double.parseDouble(et_latitude.getText().toString()), Double.parseDouble(et_longitude.getText().toString()), s1.isChecked(), Integer.parseInt(et_Quantity.getText().toString()));
+
+                    merhav_mugan mugan = new merhav_mugan(id, Double.parseDouble(et_latitude.getText().toString()), Double.parseDouble(et_longitude.getText().toString()), s1.isChecked(), Integer.parseInt(et_Quantity.getText().toString()),userId);
                     db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
                     Toast.makeText(DB_Main.this, "inserted to the database", Toast.LENGTH_SHORT).show();
                 }

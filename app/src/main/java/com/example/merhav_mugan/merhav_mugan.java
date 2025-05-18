@@ -5,6 +5,7 @@ public class merhav_mugan {
     double latitude , longitude ;
     boolean accessible;
     int quantity;
+    long userid;
 
     public long getid() {
         return id;
@@ -52,13 +53,22 @@ public class merhav_mugan {
                 ", Quantity:" + quantity ;
     }
 
-    public merhav_mugan(long id, double latitude, double longitude, boolean accessible, int quantity) {
+    public long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(long userid) {
+        this.userid = userid;
+    }
+
+    public merhav_mugan(long id, double latitude, double longitude, boolean accessible, int quantity, long user_id) {
 
         this.id=id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.accessible = accessible;
         this.quantity = quantity;
+        this.userid=user_id;
     }
 
     public merhav_mugan() {

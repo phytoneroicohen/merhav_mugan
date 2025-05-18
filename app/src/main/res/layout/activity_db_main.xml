@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="latitude"
+        android:hint="קו רוחב"
         />
     <EditText
         android:id="@+id/etlongitude"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="longitude"
+        android:hint="קו אורך"
         />
 
     <Switch
