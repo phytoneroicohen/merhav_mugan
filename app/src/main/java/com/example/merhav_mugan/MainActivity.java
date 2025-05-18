@@ -27,36 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Map xxx=new Map();
         double myLat=xxx.getMyLatitude();
 
-     /*  btn1=findViewById(R.id.button1);
-        btn2=findViewById(R.id.button2);
-        btn3=findViewById(R.id.button3);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Intent intent=new Intent(MainActivity.this,Map.class);
-               // startActivity(intent);
-
-
-            }
-        });
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,DB_Main.class);
-                startActivity(intent);
-            }
-        });
-
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Login.class);
-                startActivity(intent);
-            }
-        });
-        */
     }
 
     @Override

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:hint="latitude"
         />
     <EditText
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:hint="longitude"
         />
 
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         android:hint="Quantity"
         />
 
@@ -45,51 +45,16 @@
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Record"
+        android:text="הוסף מרחב מוגן"
         android:enabled="false"
         />
 
-    <EditText
-        android:id="@+id/edDeleteID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Record ID to delete"
-        android:inputType="text"
-        />
 
-    <Button
-        android:id="@+id/btnDeleteID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Record" />
-
-    <EditText
-        android:id="@+id/edStdntUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Record ID to update"
-        android:inputType="text"
-        />
-    <EditText
-        android:id="@+id/etGradesUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Safeplace quantity Update"
-        android:inputType="text"
-        />
-
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update SafePlace" />
-
-
-    <Button
+        <Button
         android:id="@+id/buttonshowingall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button show all" />
+        android:text="הצג נתוני מרחבים מוגנים" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

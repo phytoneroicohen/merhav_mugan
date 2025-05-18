@@ -37,23 +37,9 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     private double myLatitude,myLongitude;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-
     public double getMyLatitude() {
         return myLatitude;
     }
-
-    public double calculateDistance(double muganLatitude,double muganLongitute){
-        double earthRadius = 6371; // קוטר כדור הארץ בקילומטרים
-        double dLat = Math.toRadians(muganLatitude - myLatitude);
-        double dLon = Math.toRadians(muganLongitute -myLongitude );
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(Math.toRadians(myLatitude)) * Math.cos(Math.toRadians(muganLatitude)) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return earthRadius * c;
-
-    }
-
     public double getMyLongitude() {
         return myLongitude;
     }
@@ -73,7 +59,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             mapFragment.getMapAsync(this);
         }
     }
-
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         myMap = googleMap;
@@ -92,7 +77,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
             @Override
             public void onResult(List<merhav_mugan> mugans) {
-                // This runs only when data is loaded!
                 Shelters=mugans;
                 for (int i=0; i<mugans.size();i++){
                     LatLng coordinate=new LatLng(mugans.get(i).getlatitude(),mugans.get(i).getLongitude());
@@ -110,7 +94,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         });
 
     }
-
     private void requestLocationPermission() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -143,10 +126,11 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permissions granted, fetch the last location
+                // Permissions granted
                 getLastLocation();
             } else {
                 // Permissions denied, show a message to the user
+                Toast.makeText(Map.this, "Location permissions denied, please allow location permission", Toast.LENGTH_SHORT).show();
             }
         }
     }

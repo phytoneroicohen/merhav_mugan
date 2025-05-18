@@ -25,7 +25,6 @@
         private Switch sn;
         DatabaseReference db;
 
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -41,20 +40,23 @@
             adrres = findViewById(R.id.address);
             btn = (Button) findViewById(R.id.register_button);
 
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            //    במידה ורוצים למחוק את התוכן של sharedPreferences
+           //  editor.clear();
+           //  editor.apply();
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //    במידה ורוצים למחוק את התוכן של sharedPreferences
-                    //editor.clear();
-                    //editor.apply();
 
                     long current_id = sharedPreferences.getLong("id", -1);
 
                     String userName = UserName.getText().toString();
-                    String Pass = Password.getText().toString();
+                    String rawPass = Password.getText().toString();
+                    String Pass = Hash.generateHash(rawPass, "SHA-256");
                     String email = Email.getText().toString();
                     long id = System.currentTimeMillis();
                     boolean permission=false;
@@ -94,16 +96,11 @@
 
                             Toast.makeText(Register.this, "inserted to the database", Toast.LENGTH_SHORT).show();
 
-
                             Intent intent = new Intent(getApplicationContext(), Login.class);
                             startActivity(intent);
 
-
                         }
                     }
-
-
-
 
             });
         }

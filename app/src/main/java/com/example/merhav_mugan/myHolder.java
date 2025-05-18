@@ -14,7 +14,7 @@ public class myHolder extends RecyclerView.ViewHolder {
         super(itemView);
         idView=itemView.findViewById(R.id.itemID);
         latitudeView=itemView.findViewById(R.id.itemLatitude);
-        longitudeView=itemView.findViewById(R.id.itemLongtitude);
+        longitudeView=itemView.findViewById(R.id.itemLongitude);
         accessibleView=itemView.findViewById(R.id.itemAccessible);
         quantityView=itemView.findViewById(R.id.itemQuantity);
 

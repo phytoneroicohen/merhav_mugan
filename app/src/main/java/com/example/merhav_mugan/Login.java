@@ -29,19 +29,16 @@ public class Login extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         boolean loggedIn=sharedPreferences.getBoolean("LogedIn",false);
-        if (loggedIn)
+         if (loggedIn)
         {Intent intent=new Intent(this,MainActivity.class);
             startActivity(intent);
            finish();
        }
-
         move_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Register.class);
                 startActivity(intent);
-
-
             }
         });
 
@@ -57,8 +54,8 @@ public class Login extends AppCompatActivity {
                 String SavedPassword = sharedPreferences.getString("Pass", "");
 
                 String UserEmail = email.getText().toString();
-                String UserPassword = pass.getText().toString();
-
+                String rawPass = pass.getText().toString();
+                String UserPassword = Hash.generateHash(rawPass, "SHA-256");
 
                 if (!SavedEmail.equals(UserEmail) || !SavedPassword.equals(UserPassword)) {
                     Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG).show();
@@ -72,7 +69,6 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
-
 
             }
         });

@@ -17,14 +17,10 @@ public class firebaseHandler {
     public firebaseHandler() {
         dbRef = FirebaseDatabase.getInstance().getReference("shelters");
     }
-
-    // 🔸 Define the callback interface INSIDE this class
     public interface ShelterListCallback {
         void onResult(List<merhav_mugan> shelters);
         void onError(String error);
     }
-
-    // 🔸 This method accepts a callback and loads the data
     public void getAllShelters(ShelterListCallback callback) {
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

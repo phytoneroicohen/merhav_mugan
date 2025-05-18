@@ -23,11 +23,9 @@ public class DB_View extends AppCompatActivity {
         handler.getAllShelters(new firebaseHandler.ShelterListCallback() {
             @Override
             public void onResult(List<merhav_mugan> shelters) {
-                // This runs only when data is loaded!
                 recyclerView.setLayoutManager(new LinearLayoutManager(DB_View.this));
                 recyclerView.setAdapter(new myAdapter(DB_View.this, shelters));
             }
-
             @Override
             public void onError(String error) {
                 Toast.makeText(DB_View.this, "Failed: " + error, Toast.LENGTH_SHORT).show();
@@ -35,6 +33,4 @@ public class DB_View extends AppCompatActivity {
         });
 
     }
-
-
 }

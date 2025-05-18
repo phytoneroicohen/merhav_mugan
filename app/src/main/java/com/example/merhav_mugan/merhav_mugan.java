@@ -48,8 +48,8 @@ public class merhav_mugan {
 
     @Override
     public String toString() {
-        return  "accessible=" + accessible +
-                ", quantity=" + quantity ;
+        return  "Accessible:" + accessible +
+                ", Quantity:" + quantity ;
     }
 
     public merhav_mugan(long id, double latitude, double longitude, boolean accessible, int quantity) {

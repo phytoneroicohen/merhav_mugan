@@ -3,10 +3,6 @@ package com.example.merhav_mugan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,16 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-import org.checkerframework.common.value.qual.StringVal;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class DB_Main extends AppCompatActivity {
 
-    Button btn_add, btn_del, btn_updt,buttonshowall;
-    EditText  et_latitude,et_longitude,et_Quantity, et_deleteID,etIDUpdt,etGradesUpdt;
+    Button btn_add,buttonshowall;
+    EditText  et_latitude,et_longitude,et_Quantity;
     DatabaseReference db;
     Switch s1;
 
@@ -46,18 +33,11 @@ public class DB_Main extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_main);
-
-
         db = FirebaseDatabase.getInstance().getReference();
         et_latitude=findViewById(R.id.etlatitude);
         et_longitude=findViewById(R.id.etlongitude);
         et_Quantity=findViewById(R.id.etQuantity);
-        et_deleteID=findViewById(R.id.edDeleteID);
-        etIDUpdt=findViewById(R.id.edStdntUpdate);
-        etGradesUpdt=findViewById(R.id.etGradesUpdate);
         btn_add=findViewById(R.id.btnAdd);
-        btn_del=findViewById(R.id.btnDeleteID);
-        btn_updt=findViewById(R.id.btnUpdate);
         buttonshowall=findViewById(R.id.buttonshowingall);
         s1=findViewById(R.id.switch1);
 
@@ -72,8 +52,8 @@ public class DB_Main extends AppCompatActivity {
                         boolean  permited= dataSnapshot.child("permission").getValue(boolean.class);
                         if (permited){
                             btn_add.setEnabled(true);
-                         // Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                         // startActivity(intent);
+
+                        } else {
                             Toast.makeText(DB_Main.this, "Access limited — view only mode", Toast.LENGTH_SHORT).show();
 
                         }
@@ -92,34 +72,34 @@ public class DB_Main extends AppCompatActivity {
         } else {
             Log.d("SharedPreferences", "userId not found in SharedPreferences");
         }
-
-
-
-
-
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long id = System.currentTimeMillis();
-
-
-                merhav_mugan mugan=new merhav_mugan (id,Double.parseDouble(et_latitude.getText().toString()),Double.parseDouble(et_longitude.getText().toString()),s1.isChecked(),Integer.parseInt(et_Quantity.getText().toString()));
-                db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
-                Toast.makeText(DB_Main.this,"inserted to the database",Toast.LENGTH_SHORT).show();
+                boolean valid=true;
+                String longitude=et_longitude.getText().toString();
+                if (Double.parseDouble(longitude)>180||Double.parseDouble(longitude)<-180||longitude.isEmpty()) {
+                    valid = false;
+                    Toast.makeText(getApplicationContext(), "Longitude must be between -180 and 180", Toast.LENGTH_LONG).show();
+                }
+                String latitude=et_latitude.getText().toString();
+                if (Double.parseDouble(latitude)>180||Double.parseDouble(latitude)<-180||latitude.isEmpty()) {
+                    valid = false;
+                    Toast.makeText(getApplicationContext(), "Latitude must be between -90 and 90", Toast.LENGTH_LONG).show();
+                }
+                String quantity=et_Quantity.getText().toString();
+                if (quantity.isEmpty()) {
+                    valid = false;
+                    Toast.makeText(getApplicationContext(), "Fill quantity", Toast.LENGTH_LONG).show();
+                }
+                if (valid) {
+                    long id = System.currentTimeMillis();
+                    merhav_mugan mugan = new merhav_mugan(id, Double.parseDouble(et_latitude.getText().toString()), Double.parseDouble(et_longitude.getText().toString()), s1.isChecked(), Integer.parseInt(et_Quantity.getText().toString()));
+                    db.child("shelters").child(String.valueOf(mugan.id)).setValue(mugan);
+                    Toast.makeText(DB_Main.this, "inserted to the database", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        btn_del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-      //          Toast.makeText(DB_Main.this,"deleted from the database",Toast.LENGTH_SHORT).show();
 
-            }
-        });
-        btn_updt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           }
-        });
         buttonshowall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +109,6 @@ public class DB_Main extends AppCompatActivity {
             }
         });
     }
-
 //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
