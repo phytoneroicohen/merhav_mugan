@@ -51,6 +51,8 @@ public class DB_Main extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         boolean  permited= dataSnapshot.child("permission").getValue(boolean.class);
                         if (permited){
+                         //   addRandomShelters(10, userId);
+
                             btn_add.setEnabled(true);
 
                         } else {
@@ -77,19 +79,33 @@ public class DB_Main extends AppCompatActivity {
             public void onClick(View v) {
                 boolean valid=true;
                 String longitude=et_longitude.getText().toString();
-                if (Double.parseDouble(longitude)>35.9||Double.parseDouble(longitude)<34.2||longitude.isEmpty()) {
-                    valid = false;
-                    Toast.makeText(getApplicationContext(), " קוי האורך חיבים להיות בין34.2 ל35.9 שהם לפי אורך גבולות ישראל", Toast.LENGTH_LONG).show();
+                if (longitude.isEmpty()){
+                    valid=false;
+                    Toast.makeText(getApplicationContext(), "יש למלא קו אורך", Toast.LENGTH_LONG).show();
+
+                } else {
+                    if (Double.parseDouble(longitude) > 35.9 || Double.parseDouble(longitude) < 34.2) {
+                        valid = false;
+                        Toast.makeText(getApplicationContext(), " קו האורך חייב להיות בטווח ", Toast.LENGTH_LONG).show();
+                    }
                 }
+
                 String latitude=et_latitude.getText().toString();
-                if (Double.parseDouble(latitude)<29.5||Double.parseDouble(latitude)>33.3||latitude.isEmpty()) {
-                    valid = false;
-                    Toast.makeText(getApplicationContext(), "קוי הרוחב חיבים להיות בין 29.5 ל33.3 שהם לפי רוחב גבולות ישראל", Toast.LENGTH_LONG).show();
+                if (latitude.isEmpty()){
+                    valid=false;
+                    Toast.makeText(getApplicationContext(), "יש למלא קו רוחב", Toast.LENGTH_LONG).show();
+
+                } else {
+                    if (Double.parseDouble(latitude) < 29.5 || Double.parseDouble(latitude) > 33.3) {
+                        valid = false;
+                        Toast.makeText(getApplicationContext(), "קו הרוחב חייב להיות בטווח ", Toast.LENGTH_LONG).show();
+                    }
                 }
+
                 String quantity=et_Quantity.getText().toString();
                 if (quantity.isEmpty()) {
                     valid = false;
-                    Toast.makeText(getApplicationContext(), "Fill quantity", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "יש למלא קיבולת מקסימלית", Toast.LENGTH_LONG).show();
                 }
                 if (valid) {
                     long id = System.currentTimeMillis();
@@ -110,7 +126,29 @@ public class DB_Main extends AppCompatActivity {
             }
         });
     }
-//Menu
+
+    private void addRandomShelters(int count, long userId) {
+        double latMin = 31.63;
+        double latMax = 31.70;
+        double lonMin = 34.57;
+        double lonMax = 34.60;
+
+        for (int i = 0; i < count; i++) {
+            double randomLat = latMin + (Math.random() * (latMax - latMin));
+            double randomLon = lonMin + (Math.random() * (lonMax - lonMin));
+            int randomQuantity = 10 + (int) (Math.random() * 90); // 10 to 100
+            boolean accessible = Math.random() < 0.5;
+
+            long id = System.currentTimeMillis() + i; // Unique ID
+            merhav_mugan mugan = new merhav_mugan(id, randomLat, randomLon, accessible, randomQuantity, userId);
+
+            db.child("shelters").child(String.valueOf(id)).setValue(mugan);
+        }
+
+        Toast.makeText(this, "10 random shelters added", Toast.LENGTH_SHORT).show();
+    }
+
+    //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
