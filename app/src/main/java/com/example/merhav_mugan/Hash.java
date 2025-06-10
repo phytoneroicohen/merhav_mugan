@@ -1,4 +1,5 @@
 package com.example.merhav_mugan;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,6 +25,4 @@ public class Hash {
             return null;
         }
     }
-
-
 }

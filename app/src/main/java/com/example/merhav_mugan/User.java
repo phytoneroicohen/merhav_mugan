@@ -9,7 +9,6 @@ public class User {
     String email;
     boolean needAccessibility;
 
-
     public long getId() {
         return id;
     }

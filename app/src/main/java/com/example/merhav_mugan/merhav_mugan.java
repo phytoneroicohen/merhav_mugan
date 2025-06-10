@@ -48,9 +48,15 @@ public class merhav_mugan {
     }
 
     @Override
+
+
     public String toString() {
-        return  "Accessible:" + accessible +
-                ", Quantity:" + quantity ;
+        String comment="לא";
+        if (accessible){
+            comment="כן";
+        }
+        return  "נגיש:" + comment +
+                "  קיבולת:" + quantity ;
     }
 
     public long getUserid() {

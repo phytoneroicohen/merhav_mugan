@@ -17,15 +17,15 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button btn1,btn2,btn3;
+    Button btn1, btn2, btn3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Map xxx=new Map();
-        double myLat=xxx.getMyLatitude();
+        Map xxx = new Map();
+        double myLat = xxx.getMyLatitude();
 
     }
 
@@ -39,27 +39,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_home) {
-            Intent intent=new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
-        }
-
-        else if (id == R.id.menu_DB) {
-            Intent intent=new Intent(this,DB_Main.class);
+        } else if (id == R.id.menu_DB) {
+            Intent intent = new Intent(this, DB_Main.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_MAP) {
-            Intent intent=new Intent(this,Map.class);
+            Intent intent = new Intent(this, Map.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_Login) {
-            Intent intent=new Intent(this,Register.class);
+            Intent intent = new Intent(this, Register.class);
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

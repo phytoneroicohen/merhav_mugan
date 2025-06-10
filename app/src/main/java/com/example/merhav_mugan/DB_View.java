@@ -12,13 +12,14 @@ import java.util.List;
 
 public class DB_View extends AppCompatActivity {
     TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db_view);
-        tv=findViewById(R.id.textView);
-        RecyclerView recyclerView=findViewById(R.id.recyclerView);
-
+        tv = findViewById(R.id.textView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        // שימוש ב firebasehandler כדי לקבל נתונים של מרחבים מוגנים מ firebase
         firebaseHandler handler = new firebaseHandler();
         handler.getAllShelters(new firebaseHandler.ShelterListCallback() {
             @Override
@@ -26,6 +27,7 @@ public class DB_View extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(DB_View.this));
                 recyclerView.setAdapter(new myAdapter(DB_View.this, shelters));
             }
+
             @Override
             public void onError(String error) {
                 Toast.makeText(DB_View.this, "Failed: " + error, Toast.LENGTH_SHORT).show();
